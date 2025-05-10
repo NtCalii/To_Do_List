@@ -2,6 +2,9 @@ import customtkinter as ctk # importando a biblioteca CustomTkinter
 from Main import * # importando a classe Main.py
 from Database import * # importando a classe Database.py
 
+db.conectar() # conectar o banco
+db.criar_tabela() # cria a tabela
+
 ################################### janela criada
 
 janela = ctk.CTk() # cria a janela
@@ -25,19 +28,11 @@ frame_baixo.grid(row=1, column=0, padx=10, pady=10, sticky="nsew") # cria espaç
 frame_baixo.grid_propagate(False)  # Isso evita que o frame mude de tamanho
 
 ################################### grid da direita
-
-titulo_direita = ctk.CTkButton(
-    frame_direita,
-    text="Aperte Aqui!",
-    font=("Calibri", 14, "bold"),
-    command= criar_banco_dados)
-titulo_direita.grid(row=0, column=0, pady=(10, 0)) # cria titulo da direita
-
 titulo_entry_nome = ctk.CTkLabel(
     frame_direita,
     text="Nome da tarefa",
     font=("Calibri", 28, "bold"))
-titulo_entry_nome.grid(row=1, column=0) # cria titulo da entry nome
+titulo_entry_nome.grid(row=1, column=0, pady=(10, 10)) # cria titulo da entry nome
 
 entry_nome = ctk.CTkEntry(
     frame_direita,
@@ -63,16 +58,17 @@ btn_adicionar_tarefa = ctk.CTkButton(
     width=200,
     height=50,
     font=("Calibri", 16, "bold"),
-    command=lambda: limpar_entry_text_direita(text_descrição, entry_nome))
+    command=lambda: (db.adicionar_tarefa(entry_nome.get(), text_descrição.get("1.0","end")),
+                     db.listar_tarefas(),
+                     limpar_entry_text_direita(text_descrição, entry_nome)))
 btn_adicionar_tarefa.grid(row =5, column=0, pady=35, padx=90) # botão de adicionar tarefa
 
 ################################### grid de baixo
 
-
+btn_apagar_tarefa = ctk.CTkButton(frame_baixo)
+btn_apagar_tarefa.grid(row=0, column=0, pady=(10, 0))
 
 ################################### executar app
 
 janela.mainloop() # roda o app
-if conexão:
-    cursor.close()
-    conexão.close()
+db.fechar() # fecha o banco
