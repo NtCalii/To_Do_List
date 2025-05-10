@@ -1,6 +1,6 @@
 import customtkinter as ctk # importando a biblioteca CustomTkinter
-import Main # importando a classe Main.py
-from Main import limpar_entry_text_direita
+from Main import * # importando a classe Main.py
+from Database import * # importando a classe Database.py
 
 ################################### janela criada
 
@@ -26,10 +26,11 @@ frame_baixo.grid_propagate(False)  # Isso evita que o frame mude de tamanho
 
 ################################### grid da direita
 
-titulo_direita = ctk.CTkLabel(
+titulo_direita = ctk.CTkButton(
     frame_direita,
-    text="Nova Lista",
-    font=("Calibri", 14, "bold"))
+    text="Aperte Aqui!",
+    font=("Calibri", 14, "bold"),
+    command= criar_banco_dados)
 titulo_direita.grid(row=0, column=0, pady=(10, 0)) # cria titulo da direita
 
 titulo_entry_nome = ctk.CTkLabel(
@@ -72,3 +73,6 @@ btn_adicionar_tarefa.grid(row =5, column=0, pady=35, padx=90) # botão de adicio
 ################################### executar app
 
 janela.mainloop() # roda o app
+if conexão:
+    cursor.close()
+    conexão.close()
