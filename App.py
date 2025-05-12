@@ -28,6 +28,7 @@ frame_baixo.grid(row=1, column=0, padx=10, pady=10, sticky="nsew") # cria espaç
 frame_baixo.grid_propagate(False)  # Isso evita que o frame mude de tamanho
 
 ################################### grid da direita
+
 titulo_entry_nome = ctk.CTkLabel(
     frame_direita,
     text="Nome da tarefa",
@@ -59,14 +60,17 @@ btn_adicionar_tarefa = ctk.CTkButton(
     height=50,
     font=("Calibri", 16, "bold"),
     command=lambda: (db.adicionar_tarefa(entry_nome.get(), text_descrição.get("1.0","end")),
-                     db.listar_tarefas(),
+                     atualizar_lista_tarefas(scroll_frame),
                      limpar_entry_text_direita(text_descrição, entry_nome)))
 btn_adicionar_tarefa.grid(row =5, column=0, pady=35, padx=90) # botão de adicionar tarefa
 
 ################################### grid de baixo
 
-btn_apagar_tarefa = ctk.CTkButton(frame_baixo)
-btn_apagar_tarefa.grid(row=0, column=0, pady=(10, 0))
+scroll_frame = ctk.CTkScrollableFrame(frame_baixo, width=570, height=490)
+scroll_frame.grid(row=1, column=0, padx=10, pady=10)
+scroll_frame.grid_propagate() # criar um frame com barra de rolagem
+
+atualizar_lista_tarefas(scroll_frame) # chama função
 
 ################################### executar app
 
