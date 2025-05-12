@@ -74,6 +74,5 @@ atualizar_lista_tarefas(scroll_frame) # chama função
 
 ################################### executar app
 
-janela.iconbitmap("Icone.ico")
 janela.mainloop() # roda o app
 db.fechar() # fecha o banco
