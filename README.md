@@ -16,7 +16,10 @@ Um aplicativo de gerenciamento de tarefas com interface moderna desenvolvido em 
 - 🔍 **Visualização organizada** de todas as tarefas
 
 Imagem do layout do app.
-<img src="https://github.com/user-attachments/assets/e160b223-3edc-41f0-8872-b2addba3e474" alt="Descrição da imagem" width="700" height="500">
+
+<div align="left">
+  <img src="https://github.com/user-attachments/assets/e160b223-3edc-41f0-8872-b2addba3e474" alt="Descrição da imagem" width="700" height="500">
+</div>
 
 ## 🤝 Contribuições
 
