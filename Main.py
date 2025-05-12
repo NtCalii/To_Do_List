@@ -40,8 +40,12 @@ def atualizar_lista_tarefas(scroll_frame):  # para limpar e atualizar o scrollab
 
         # Adicionando um botão para marcar a tarefa como concluída
         concluir_btn = ctk.CTkButton(tarefa_frame,
-                                        text="Concluir Tarefa",
-                                        width=100,
-                                        font=("Calibri", 16, "bold"))
+                                     text="Concluir Tarefa",
+                                     width=100,
+                                     font=("Calibri", 16, "bold"),
+                                     command=lambda t_id=id_: deletar_tarefa(t_id, scroll_frame))
         concluir_btn.grid(row=0, column=1, sticky="ne",padx=10, pady=10)
 
+def deletar_tarefa(t_id, scroll_frame): # para deletar tarefa
+    db.deletar_tarefa_db(t_id)
+    atualizar_lista_tarefas(scroll_frame)

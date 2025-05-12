@@ -59,6 +59,12 @@ class Database:
         except sqlite3.Error:
             return []
 
+    def deletar_tarefa_db(self, id_apagar):
+        try:
+            self.cursor.execute("DELETE FROM tarefas WHERE id = ?", (id_apagar,))
+            self.conexão.commit()
+        except sqlite3.Error as e:
+            print(f"[X] Erro ao deletar tarefa: {e}")
 
 # Instância global (pode ser importada no restante do app)
 db = Database()
