@@ -55,11 +55,8 @@ class Database:
         try:
             self.cursor.execute("SELECT * FROM tarefas")
             tarefas = self.cursor.fetchall()
-            for tarefa in tarefas:
-                print(f"ID: {tarefa[0]} | Nome: {tarefa[1]} | Descrição: {tarefa[2]}")
             return tarefas
-        except sqlite3.Error as e:
-            print(f"[X] Erro ao listar tarefas: {e}")
+        except sqlite3.Error:
             return []
 
 
